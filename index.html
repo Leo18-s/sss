@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#5E0A13">
+<title>栗嘉俊 & 宋青青 · 婚礼邀请函</title>
+<style>
+  :root{
+    --red-deep:#4A060E;
+    --red:#6E0C16;
+    --red-mid:#8E1220;
+    --red-bright:#B4242F;
+    --gold:#D9B56B;
+    --gold-soft:#EBD3A0;
+    --gold-pale:#F6E9C8;
+    --ivory:#FBF6EC;
+    --ink:#4A1015;
+
+    --serif:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong","SimSun",serif;
+    --kai:"STKaiti","Kaiti SC","KaiTi","STXingkai","STSong",serif;
+    --display:"STXingkai","Xingkai SC","STKaiti","Kaiti SC","KaiTi",serif;
+
+    --gold-grad:linear-gradient(165deg,#FFF9E7 0%,#F2DDA9 20%,#DFC081 42%,#C4973F 58%,#EBD49B 78%,#FFF9E7 100%);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html{-webkit-text-size-adjust:100%;}
+
+  body{
+    background:#2A0508;
+    font-family:var(--serif);
+    color:var(--ivory);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  .page{
+    position:relative;
+    max-width:480px;
+    margin:0 auto;
+    background:var(--red-deep);
+    box-shadow:0 0 80px rgba(0,0,0,.6);
+    overflow:hidden;
+  }
+
+  /* ---------- shared bits ---------- */
+  .gold-text{
+    background-image:var(--gold-grad);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+  }
+  @supports not ((-webkit-background-clip:text) or (background-clip:text)){
+    .gold-text{color:var(--gold);background:none;-webkit-text-fill-color:currentColor;}
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(26px);
+    transition:opacity 1.1s cubic-bezier(.22,.61,.36,1),
+               transform 1.1s cubic-bezier(.22,.61,.36,1);
+  }
+  .reveal.in{opacity:1;transform:none;}
+
+  .divider{
+    display:flex;align-items:center;justify-content:center;
+    gap:10px;margin:0 auto;
+  }
+  .divider i{
+    display:block;height:1px;width:46px;
+    background:linear-gradient(90deg,transparent,var(--gold));
+    opacity:.7;
+  }
+  .divider i:last-child{
+    background:linear-gradient(90deg,var(--gold),transparent);
+  }
+  .divider b{
+    width:5px;height:5px;transform:rotate(45deg);
+    background:var(--gold);opacity:.85;
+  }
+
+  /* ---------- cover ---------- */
+  .cover{
+    position:relative;
+    min-height:100vh;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .cover-img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:50% 18%;
+    z-index:-2;
+    animation:slowZoom 22s ease-out both;
+  }
+  @keyframes slowZoom{from{transform:scale(1.08);}to{transform:scale(1);}}
+
+  .cover::after{
+    content:"";
+    position:absolute;inset:0;z-index:-1;
+    background:
+      linear-gradient(to bottom,
+        rgba(74,6,14,.55) 0%,
+        rgba(74,6,14,.10) 18%,
+        rgba(74,6,14,0) 40%,
+        rgba(74,6,14,.28) 58%,
+        rgba(84,7,16,.90) 74%,
+        #4A060E 88%);
+  }
+
+  .cover-top{
+    position:absolute;
+    top:0;left:0;right:0;
+    padding:calc(env(safe-area-inset-top,0px) + 30px) 26px 0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+  }
+  .eyebrow{
+    font-family:var(--serif);
+    font-size:9.5px;
+    letter-spacing:.42em;
+    text-indent:.42em;
+    color:rgba(246,233,200,.82);
+  }
+  .cover-top .divider i{width:34px;}
+
+  .cover-body{
+    padding:0 26px calc(env(safe-area-inset-bottom,0px) + 92px);
+    text-align:center;
+  }
+
+  .calli{
+    display:flex;
+    flex-direction:row-reverse;
+    justify-content:center;
+    gap:clamp(12px,4.5vw,24px);
+    margin-bottom:24px;
+    filter:drop-shadow(0 6px 22px rgba(0,0,0,.45));
+  }
+  .calli .col{
+    writing-mode:vertical-rl;
+    font-family:var(--display);
+    font-size:clamp(62px,16.5vw,80px);
+    line-height:1.02;
+    letter-spacing:.02em;
+  }
+  .calli .col:last-child{margin-top:clamp(18px,6vw,34px);}
+
+  .names{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    font-family:var(--serif);
+    font-size:clamp(17px,4.6vw,20px);
+    letter-spacing:.22em;
+    text-indent:.22em;
+    color:#FBEFD6;
+    margin-bottom:14px;
+  }
+  .names .amp{
+    font-family:var(--display);
+    font-size:.92em;
+    color:var(--gold);
+    opacity:.9;
+    letter-spacing:0;
+    text-indent:0;
+  }
+  .hero-date{
+    font-family:var(--serif);
+    font-size:12.5px;
+    letter-spacing:.34em;
+    text-indent:.34em;
+    color:rgba(246,233,200,.78);
+  }
+
+  .scroll-hint{
+    position:absolute;
+    left:50%;
+    bottom:22px;
+    transform:translateX(-50%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    font-size:9px;
+    letter-spacing:.3em;
+    text-indent:.3em;
+    color:rgba(246,233,200,.5);
+    animation:bob 2.6s ease-in-out infinite;
+  }
+  .scroll-hint::after{
+    content:"";
+    width:1px;height:26px;
+    background:linear-gradient(to bottom,rgba(246,233,200,.55),transparent);
+  }
+  @keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,6px);}}
+
+  /* ---------- invitation ---------- */
+  .invite{
+    position:relative;
+    padding:78px 30px 84px;
+    background:
+      radial-gradient(120% 60% at 50% 0%,rgba(180,36,47,.42) 0%,transparent 62%),
+      radial-gradient(90% 50% at 50% 100%,rgba(255,196,120,.07) 0%,transparent 60%),
+      linear-gradient(180deg,#4A060E 0%,#6E0C16 22%,#6E0C16 70%,#4A060E 100%);
+    text-align:center;
+  }
+  .invite::before{
+    content:"";
+    position:absolute;
+    inset:22px;
+    border:1px solid rgba(217,181,107,.34);
+    pointer-events:none;
+  }
+  .invite::after{
+    content:"";
+    position:absolute;
+    inset:28px;
+    border:1px solid rgba(217,181,107,.12);
+    pointer-events:none;
+  }
+
+  .xi-big{
+    font-family:var(--display);
+    font-size:clamp(86px,26vw,116px);
+    line-height:1;
+    font-weight:400;
+    filter:drop-shadow(0 4px 18px rgba(0,0,0,.35));
+  }
+  .xi-big sup{font-size:.3em;vertical-align:super;letter-spacing:0;}
+
+  .to{
+    margin-top:38px;
+    font-family:var(--kai);
+    font-size:15px;
+    letter-spacing:.16em;
+    color:var(--gold-soft);
+  }
+  .poem{
+    margin-top:20px;
+    font-family:var(--kai);
+    font-size:clamp(15px,4.2vw,17.5px);
+    line-height:2.25;
+    letter-spacing:.14em;
+    text-indent:.14em;
+    color:#F4E4C4;
+  }
+  .poem span{display:block;}
+
+  .couple{
+    margin-top:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:clamp(12px,5vw,26px);
+  }
+  .who{display:flex;flex-direction:column;gap:9px;}
+  .who small{
+    font-size:11px;
+    letter-spacing:.28em;
+    text-indent:.28em;
+    color:rgba(235,211,160,.72);
+    font-family:var(--kai);
+  }
+  .who strong{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(18px,5vw,21px);
+    letter-spacing:.1em;
+    text-indent:.1em;
+    color:#FBEFD6;
+  }
+  .couple .mini-xi{
+    font-family:var(--display);
+    font-size:26px;
+    line-height:1;
+    padding-bottom:12px;
+    filter:drop-shadow(0 2px 10px rgba(0,0,0,.3));
+  }
+
+  /* ---------- details ---------- */
+  .details{
+    position:relative;
+    padding:76px 30px 84px;
+    background:
+      radial-gradient(90% 50% at 50% 0%,rgba(255,255,255,.55) 0%,transparent 55%),
+      linear-gradient(180deg,#FBF6EC 0%,#F7EFE0 100%);
+    color:var(--ink);
+    text-align:center;
+  }
+  .details::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(217,181,107,.7),transparent);
+  }
+
+  .label{
+    display:flex;align-items:center;justify-content:center;gap:12px;
+    font-size:11px;
+    letter-spacing:.36em;
+    text-indent:.36em;
+    color:#9A6B3C;
+  }
+  .label::before,.label::after{
+    content:"";
+    width:34px;height:1px;
+    background:linear-gradient(90deg,transparent,#C9A063);
+  }
+  .label::after{background:linear-gradient(90deg,#C9A063,transparent);}
+
+  .date-big{
+    margin-top:20px;
+    font-family:var(--serif);
+    font-size:clamp(34px,9.4vw,42px);
+    letter-spacing:.06em;
+    color:var(--red);
+    font-variant-numeric:lining-nums tabular-nums;
+  }
+  .date-sub{
+    margin-top:12px;
+    font-family:var(--kai);
+    font-size:14px;
+    letter-spacing:.18em;
+    text-indent:.18em;
+    color:#8A5A34;
+  }
+  .week{
+    display:inline-block;
+    margin-left:6px;
+    padding:1px 8px;
+    border:1px solid rgba(154,107,60,.45);
+    border-radius:2px;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-indent:0;
+    vertical-align:1px;
+  }
+
+  .countdown{
+    margin-top:24px;
+    font-family:var(--kai);
+    font-size:13px;
+    letter-spacing:.16em;
+    color:#A9805A;
+  }
+  .countdown b{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:19px;
+    color:#B4242F;
+    padding:0 4px;
+  }
+
+  .rule{
+    width:56px;height:1px;
+    margin:44px auto 40px;
+    background:linear-gradient(90deg,transparent,#C9A063,transparent);
+  }
+
+  .venue{
+    margin-top:18px;
+    font-family:var(--kai);
+    font-size:clamp(16px,4.4vw,18px);
+    line-height:2;
+    letter-spacing:.1em;
+    color:#4A1015;
+  }
+  .venue em{
+    font-style:normal;
+    display:block;
+    font-size:.82em;
+    color:#8A5A34;
+    letter-spacing:.14em;
+    margin-top:2px;
+  }
+
+  /* ---------- closing ---------- */
+  .closing{
+    position:relative;
+    padding:76px 30px calc(env(safe-area-inset-bottom,0px) + 62px);
+    background:
+      radial-gradient(100% 45% at 50% 0%,rgba(180,36,47,.5) 0%,transparent 60%),
+      linear-gradient(180deg,#4A060E 0%,#5E0A13 55%,#3D040B 100%);
+    text-align:center;
+  }
+
+  .arch{
+    display:block;
+    width:min(280px,72%);
+    margin:0 auto 40px;
+    border-radius:180px 180px 6px 6px;
+    box-shadow:0 18px 50px rgba(0,0,0,.45);
+    border:1px solid rgba(217,181,107,.35);
+    padding:6px;
+    background:rgba(217,181,107,.08);
+  }
+
+  .wish{
+    font-family:var(--kai);
+    font-size:15.5px;
+    line-height:2.15;
+    letter-spacing:.14em;
+    text-indent:.14em;
+    color:#F1DFBB;
+  }
+
+  .hosts{
+    margin-top:40px;
+    font-family:var(--serif);
+    font-size:15px;
+    letter-spacing:.14em;
+    text-indent:.14em;
+    color:#F6E9C8;
+    line-height:2;
+  }
+  .hosts .sep{
+    color:var(--gold);
+    opacity:.6;
+    padding:0 8px;
+  }
+
+  .jingyao{
+    margin-top:22px;
+    font-family:var(--display);
+    font-size:clamp(38px,10vw,46px);
+    line-height:1.1;
+    letter-spacing:.1em;
+    text-indent:.1em;
+    filter:drop-shadow(0 3px 14px rgba(0,0,0,.3));
+  }
+
+  .foot{
+    margin-top:52px;
+    font-size:9.5px;
+    letter-spacing:.38em;
+    text-indent:.38em;
+    color:rgba(217,181,107,.5);
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    .cover-img{animation:none;}
+    .scroll-hint{animation:none;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== 封面 ===== -->
+  <section class="cover">
+    <img class="cover-img" src="images/hero.jpg" alt="栗嘉俊与宋青青的婚纱照">
+
+    <div class="cover-top">
+      <p class="eyebrow">WEDDING INVITATION</p>
+      <div class="divider"><i></i><b></b><i></i></div>
+    </div>
+
+    <div class="cover-body">
+      <h1 class="calli gold-text"><span class="col">吾家</span><span class="col">有喜</span></h1>
+      <div class="names">
+        <span>栗嘉俊</span><span class="amp">&amp;</span><span>宋青青</span>
+      </div>
+      <p class="hero-date">2027 &nbsp;·&nbsp; 01 &nbsp;·&nbsp; 26</p>
+    </div>
+
+    <div class="scroll-hint">向 上 滑 动</div>
+  </section>
+
+  <!-- ===== 请柬 ===== -->
+  <section class="invite">
+    <div class="xi-big gold-text reveal">囍</div>
+
+    <p class="to reveal">尊敬的各位亲朋好友：</p>
+
+    <div class="poem reveal">
+      <span>吾家有喜，爱子成婚，良辰已定</span>
+      <span>吉日待访，敬备薄酌，恭候光临</span>
+    </div>
+
+    <div class="couple reveal">
+      <div class="who">
+        <small>儿 子</small>
+        <strong>栗嘉俊</strong>
+      </div>
+      <div class="mini-xi gold-text">囍</div>
+      <div class="who">
+        <small>儿 媳</small>
+        <strong>宋青青</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 时间·地点 ===== -->
+  <section class="details">
+    <div class="reveal">
+      <p class="label">新 婚 时 间</p>
+      <p class="date-big">2027.01.26</p>
+      <p class="date-sub">农历十二月十九<span class="week">星期二</span></p>
+      <p class="countdown" id="countdown"></p>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="reveal">
+      <p class="label">新 婚 地 点</p>
+      <p class="venue">
+        会同县林城镇乡排子村
+        <em>家中（村部对面）</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 敬邀 ===== -->
+  <section class="closing">
+    <img class="arch reveal" src="images/portrait.jpg" alt="栗嘉俊与宋青青">
+
+    <p class="wish reveal">
+      诚挚邀请您<br>
+      与我们一同见证这一刻的幸福
+    </p>
+
+    <p class="hosts reveal">
+      父亲 栗海洋<span class="sep">·</span>母亲 罗爱梅
+    </p>
+
+    <p class="jingyao gold-text reveal">敬邀</p>
+
+    <p class="foot">吾家 · 有喜</p>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  // 滚动渐显
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // 倒计时
+  var el = document.getElementById('countdown');
+  var target = new Date(2027, 0, 26, 10, 0, 0);
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+  var start = new Date(2027, 0, 26);
+  start.setHours(0, 0, 0, 0);
+  var days = Math.round((start - today) / 86400000);
+
+  if (days > 364) {
+    el.innerHTML = '距 婚 礼 还 有 <b>' + days + '</b> 天';
+  } else if (days > 0) {
+    el.innerHTML = '距 婚 礼 还 有 <b>' + days + '</b> 天';
+  } else if (days === 0) {
+    el.innerHTML = '今 天 · 我 们 结 婚 啦';
+  } else {
+    el.innerHTML = '感 谢 您 的 见 证';
+  }
+})();
+</script>
+</body>
+</html>
